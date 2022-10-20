@@ -7,7 +7,12 @@
 - Reduzir erros simples de desenvolvimento
 - Manter as discussões dos PRs/MRs focadas na lógica e construção da tarefa
 
-## Styleguide
+## Princípios
+- Este documento é um complemento à [Swift API Design Guidelines](https://swift.org/documentation/api-design-guidelines/), as guides descritas aqui não devem contradizer as guidelines da Apple.
+- Antes de submeter seu código, tenha em mente o comportamento para manter a indentação: <kbd>^</kbd> + <kbd>I</kbd>.
+- Exceções à estas regras devem ser justificadas.
+
+## Styleguide 
 
 ### Nomenclatura
 

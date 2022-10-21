@@ -176,7 +176,7 @@ struct UserModel {
 }
 ```
 
-####  Evitar declaração de vários objetos dentro do mesmo arquivo
+#### Evitar declaração de vários objetos dentro do mesmo arquivo
 Exemplos:
 ##### Não preferível
 `Models.swift`
@@ -209,6 +209,85 @@ struct AddressModel {
     let country: String
     let city: String
     let number: Int
+}
+```
+
+#### Em casos em que uma `struct`/`class`/`enum` dependa de outra `struct`/`class`/`enum`, usar outro arquivo ou inserir dentro da própria `struct`/`class`/`enum` a declaração. 
+Exemplos:
+##### Não preferível
+`Models.swift`
+```swift
+struct UserModel {
+    let name: String
+    let lastName: String
+    let birthDate: String
+    let address: AddressModel
+}
+
+struct AddressModel {
+    let country: String
+    let city: String
+    let number: Int
+}
+```
+
+##### Correto
+`UserModel.swift`
+```swift
+struct UserModel {
+    let name: String
+    let lastName: String
+    let birthDate: String
+    let address: AddressModel
+}
+```
+`AddressModel.swift`
+```swift
+struct AddressModel {
+    let country: String
+    let city: String
+    let number: Int
+}
+```
+
+ou
+
+`UserModel.swift`
+```swift
+struct UserModel {
+    struct AddressModel {
+        let country: String
+        let city: String
+        let number: Int
+    }
+
+    let name: String
+    let lastName: String
+    let birthDate: String
+    let address: AddressModel
+}
+```
+
+ou
+
+##### Correto
+`UserModel.swift`
+```swift
+struct UserModel {
+    let name: String
+    let lastName: String
+    let birthDate: String
+    let address: AddressModel
+}
+```
+`AddressModel.swift` ou `UserModel+AddressModel.swift`
+```swift
+extension UserModel {
+    struct AddressModel {
+        let country: String
+        let city: String
+        let number: Int
+    }
 }
 ```
 
